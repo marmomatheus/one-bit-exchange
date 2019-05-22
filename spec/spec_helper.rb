@@ -17,6 +17,10 @@ RSpec.configure do |config|
   # rspec-expectations config goes here. You can use an alternate
   # assertion/expectation library such as wrong or the stdlib/minitest
   # assertions if you prefer.
+  require 'webmock/rspec'
+  WebMock.disable_net_connect!(allow_localhost: true)
+  require File.expand_path("../../config/environment", __FILE__)
+  Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
   config.expect_with :rspec do |expectations|
     # This option will default to `true` in RSpec 4. It makes the `description`
     # and `failure_message` of custom matchers include text for helper methods
